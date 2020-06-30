@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface GoodService {
     List<GoodDTO> getAll();
+    GoodDTO getById(int id);
     GoodDTO create(GoodDTO goodDTO) throws InvalidException;
     GoodDTO update(GoodDTO goodDTO) throws InvalidException;
     void delete(GoodDTO goodDTO);

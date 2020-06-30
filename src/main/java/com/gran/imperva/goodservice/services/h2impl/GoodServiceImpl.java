@@ -42,6 +42,17 @@ public class GoodServiceImpl implements GoodService {
     }
 
     @Override
+    public GoodDTO getById(int id) {
+        Good good = goodDAO.findById(id).orElse(null);
+
+        if (good == null) {
+            return null;
+        }
+
+        return conversionService.convert(good, GoodDTO.class);
+    }
+
+    @Override
     public GoodDTO create(GoodDTO goodDTO) throws InvalidException {
         validateGoodDTO(goodDTO);
         Good goodNew = conversionService.convert(goodDTO, Good.class);

@@ -28,6 +28,19 @@ public class GoodController {
         return goodService.getAll();
     }
 
+    @GetMapping(path = "/{id}")
+    public Object getGood(@PathVariable Integer id) {
+        log.info("Get good by id");
+
+        GoodDTO goodDTO = goodService.getById(id);
+
+        if (goodDTO == null) {
+            return new ResponseEntity<String>("No such element", HttpStatus.NOT_FOUND);
+        }
+
+        return goodDTO;
+    }
+
     @PostMapping
     public Object addGood(GoodDTO goodDTO) {
         log.info("Add good {}", goodDTO);
